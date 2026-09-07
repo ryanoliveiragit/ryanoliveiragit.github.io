@@ -39,6 +39,13 @@ export interface Education {
   status?: Localized
 }
 
+export interface Language {
+  name: Localized
+  level: Localized
+  /** Código BCP 47, usado no JSON-LD (knowsLanguage). */
+  code: string
+}
+
 export interface SkillGroup {
   label: Localized
   items: Tag[]
@@ -68,6 +75,7 @@ export interface Content {
     experience: Localized
     projects: Localized
     education: Localized
+    languages: Localized
     contact: Localized
   }
   skills: SkillGroup[]
@@ -75,6 +83,7 @@ export interface Content {
   projects: Project[]
   projectsNote: Localized
   education: Education[]
+  languages: Language[]
   contact: {
     heading: Localized
     blurb: Localized
@@ -149,6 +158,7 @@ export const content: Content = {
     experience: { pt: "experiência", en: "experience" },
     projects: { pt: "projetos", en: "projects" },
     education: { pt: "formação", en: "education" },
+    languages: { pt: "idiomas", en: "languages" },
     contact: { pt: "contato", en: "contact" },
   },
 
@@ -367,6 +377,24 @@ export const content: Content = {
         en: "Full Stack Program",
       },
       period: { pt: "2021 — 2023", en: "2021 — 2023" },
+    },
+  ],
+
+  languages: [
+    {
+      name: { pt: "Português", en: "Portuguese" },
+      level: { pt: "nativo", en: "native" },
+      code: "pt-BR",
+    },
+    {
+      name: { pt: "Inglês", en: "English" },
+      level: { pt: "técnico", en: "technical" },
+      code: "en",
+    },
+    {
+      name: { pt: "Russo", en: "Russian" },
+      level: { pt: "básico", en: "basic" },
+      code: "ru",
     },
   ],
 

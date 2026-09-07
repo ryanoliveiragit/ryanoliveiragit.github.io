@@ -39,6 +39,25 @@ export function Education() {
             </li>
           ))}
         </ul>
+
+        <h3 className="mt-14 mb-4 font-mono text-xs tracking-widest text-ink-soft uppercase">
+          {pick(content.sections.languages, lang)}
+        </h3>
+        <ul className="border-t border-line">
+          {content.languages.map((item) => (
+            <li
+              key={item.code}
+              className="flex items-baseline justify-between gap-6 border-b border-line py-4"
+            >
+              <span className="text-sm font-medium tracking-tight">
+                {pick(item.name, lang)}
+              </span>
+              <span className="font-mono text-xs whitespace-nowrap text-ink-soft">
+                {pick(item.level, lang)}
+              </span>
+            </li>
+          ))}
+        </ul>
       </div>
     </section>
   )

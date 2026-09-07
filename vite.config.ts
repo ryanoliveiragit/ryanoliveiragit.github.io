@@ -47,6 +47,7 @@ function seo(): Plugin {
     worksFor: { "@type": "Organization", name: "Nevus Digital" },
     sameAs: [site.linkedin, site.github].filter(Boolean),
     knowsAbout,
+    knowsLanguage: content.languages.map((l) => l.code),
   }
   const jsonLd = {
     "@context": "https://schema.org",
