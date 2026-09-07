@@ -13,23 +13,25 @@ import { content, tagText } from "./src/i18n/content.ts"
  */
 function seo(): Plugin {
   const url = site.url.replace(/\/$/, "")
-  const title = content.seo.title.pt
-  const description = content.seo.description.pt
+  const title = content.seo.title.en
+  const description = content.seo.description.en
   let outDir = "dist"
   let isSsr = false
 
   const knowsAbout = content.skills.flatMap((g) =>
-    g.items.map((i) => tagText(i, "pt"))
+    g.items.map((i) => tagText(i, "en"))
   )
   const keywords = [
     site.name,
     site.handle,
-    "engenheiro de software",
-    "engenheiro de software generalista",
-    "desenvolvedor full stack",
-    "desenvolvedor front-end",
-    "desenvolvedor back-end",
     "software engineer",
+    "generalist software engineer",
+    "full stack developer",
+    "front-end developer",
+    "back-end developer",
+    "portfolio",
+    "engenheiro de software",
+    "desenvolvedor full stack",
     "portfólio",
     ...knowsAbout.slice(0, 12),
   ].join(", ")
@@ -39,7 +41,7 @@ function seo(): Plugin {
     "@id": url ? `${url}/#person` : "#person",
     name: site.name,
     alternateName: site.handle,
-    jobTitle: content.hero.headline.pt,
+    jobTitle: content.hero.headline.en,
     description,
     email: `mailto:${site.email}`,
     ...(url ? { url: `${url}/`, image: `${url}${site.ogImage}` } : {}),
@@ -57,7 +59,7 @@ function seo(): Plugin {
         "@type": "WebSite",
         name: `${site.name} · ${site.handle}`,
         ...(url ? { url: `${url}/` } : {}),
-        inLanguage: ["pt-BR", "en"],
+        inLanguage: ["en", "pt-BR", "ru"],
         about: { "@id": person["@id"] },
       },
     ],
@@ -85,8 +87,9 @@ function seo(): Plugin {
         meta({ property: "og:site_name", content: site.handle }),
         meta({ property: "og:title", content: title }),
         meta({ property: "og:description", content: description }),
-        meta({ property: "og:locale", content: "pt_BR" }),
-        meta({ property: "og:locale:alternate", content: "en_US" }),
+        meta({ property: "og:locale", content: "en_US" }),
+        meta({ property: "og:locale:alternate", content: "pt_BR" }),
+        meta({ property: "og:locale:alternate", content: "ru_RU" }),
         meta({ name: "twitter:card", content: url ? "summary_large_image" : "summary" }),
         meta({ name: "twitter:title", content: title }),
         meta({ name: "twitter:description", content: description }),
@@ -104,7 +107,7 @@ function seo(): Plugin {
           meta({ property: "og:image", content: `${url}${site.ogImage}` }),
           meta({ property: "og:image:width", content: "1200" }),
           meta({ property: "og:image:height", content: "630" }),
-          meta({ property: "og:image:alt", content: `${site.name} — ${content.hero.headline.pt}` }),
+          meta({ property: "og:image:alt", content: `${site.name} — ${content.hero.headline.en}` }),
           meta({ name: "twitter:image", content: `${url}${site.ogImage}` })
         )
       }

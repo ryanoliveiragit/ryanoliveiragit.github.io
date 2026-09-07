@@ -11,32 +11,37 @@ import { content, pick, type Lang } from "@/i18n/content"
 interface LanguageContextValue {
   lang: Lang
   setLang: (lang: Lang) => void
-  toggle: () => void
 }
 
 const LanguageContext = createContext<LanguageContextValue | null>(null)
 
-const STORAGE_KEY = "ryanvs:lang"
-const HTML_LANG: Record<Lang, string> = { pt: "pt-BR", en: "en" }
+/** Idioma padrão do site (também é o idioma do HTML pré-renderizado). */
+export const DEFAULT_LANG: Lang = "en"
+export const LANGS: Lang[] = ["en", "pt", "ru"]
 
-/** Preferência salva > idioma do navegador (pt-* → pt, resto → en). */
-function detectLang(): Lang {
+const STORAGE_KEY = "ryanvs:lang"
+const HTML_LANG: Record<Lang, string> = { en: "en", pt: "pt-BR", ru: "ru" }
+
+const isLang = (v: unknown): v is Lang => LANGS.includes(v as Lang)
+
+/** Só a preferência salva muda o idioma; sem ela, fica o padrão (inglês). */
+function savedLang(): Lang {
   try {
     const saved = localStorage.getItem(STORAGE_KEY)
-    if (saved === "pt" || saved === "en") return saved
+    if (isLang(saved)) return saved
   } catch {
     /* storage indisponível */
   }
-  const nav = (navigator.language || "").toLowerCase()
-  return nav.startsWith("pt") ? "pt" : "en"
+  return DEFAULT_LANG
 }
 
 export function LanguageProvider({ children }: { children: ReactNode }) {
-  // Começa em "pt" para casar com o HTML pré-renderizado; ajusta após montar.
-  const [lang, setLangState] = useState<Lang>("pt")
+  // Começa no padrão para casar com o HTML pré-renderizado; ajusta após montar.
+  const [lang, setLangState] = useState<Lang>(DEFAULT_LANG)
 
   useEffect(() => {
-    setLangState(detectLang())
+    const saved = savedLang()
+    if (saved !== DEFAULT_LANG) setLangState(saved)
   }, [])
 
   // Mantém <html lang>, <title> e description coerentes com o idioma ativo.
@@ -57,13 +62,8 @@ export function LanguageProvider({ children }: { children: ReactNode }) {
     }
   }, [])
 
-  const toggle = useCallback(
-    () => setLang(lang === "pt" ? "en" : "pt"),
-    [lang, setLang]
-  )
-
   return (
-    <LanguageContext.Provider value={{ lang, setLang, toggle }}>
+    <LanguageContext.Provider value={{ lang, setLang }}>
       {children}
     </LanguageContext.Provider>
   )

@@ -1,7 +1,7 @@
 # ryanvs — portfólio de Ryan Oliveira
 
 Site pessoal minimalista (React 19 + TypeScript + Vite 8 + Tailwind CSS 4),
-bilíngue (pt-BR / en), com tema claro/escuro seguindo o sistema e HTML
+em três idiomas (inglês por padrão, português e russo), com tema claro/escuro seguindo o sistema e HTML
 pré-renderizado para SEO.
 
 ## Scripts
@@ -17,7 +17,7 @@ pré-renderizado para SEO.
 ## Onde editar
 
 - **Textos, experiências, projetos, formação** → `src/i18n/content.ts`
-  (cada campo tem `pt` e `en`; use `[[palavra]]` para destacar com a cor de accent).
+  (cada campo tem `en`, `pt` e `ru`; use `[[palavra]]` para destacar com a cor de accent).
 - **URL do site, e-mail, LinkedIn, GitHub, WhatsApp** → `src/site.config.ts`.
   Preencha `url` com o endereço publicado para ativar canonical, `og:url`,
   `og:image` e `sitemap.xml`.

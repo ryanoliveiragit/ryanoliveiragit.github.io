@@ -46,7 +46,7 @@ function shoot(html, width, height, out) {
   console.log(`✓ ${path.relative(root, out)}`)
 }
 
-const og = `<!doctype html><html lang="pt-BR"><head><meta charset="utf-8">
+const og = `<!doctype html><html lang="en"><head><meta charset="utf-8">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;600&family=Space+Mono:wght@400;700&display=block">
 <style>
@@ -66,13 +66,13 @@ const og = `<!doctype html><html lang="pt-BR"><head><meta charset="utf-8">
   <div class="bar"></div>
   <img class="logo" src="file://${svgFavicon}" alt="">
   <div>
-    <div class="kicker mono"><span class="dot"></span>ryanvs · aberto a novas oportunidades</div>
+    <div class="kicker mono"><span class="dot"></span>ryanvs · open to new opportunities</div>
     <h1 style="margin-top:38px">Ryan Oliveira</h1>
-    <h2>Engenheiro de Software · front-end, back-end, IA e o que o projeto precisar</h2>
+    <h2>Software Engineer · front end, back end, AI and whatever the project needs</h2>
   </div>
   <div class="stack">
-    <span class="chip accent">Front-end</span><span class="chip accent">Back-end</span><span class="chip accent">IA</span>
-    <span class="chip">Produto</span><span class="chip">UI/UX</span><span class="chip">Automação</span>
+    <span class="chip accent">Front end</span><span class="chip accent">Back end</span><span class="chip accent">AI</span>
+    <span class="chip">Product</span><span class="chip">UI/UX</span><span class="chip">Automation</span>
   </div>
 </div></body></html>`
 

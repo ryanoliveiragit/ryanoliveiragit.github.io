@@ -1,6 +1,8 @@
 import { content, pick } from "@/i18n/content"
-import { useLanguage } from "@/i18n/language-context"
+import { LANGS, useLanguage } from "@/i18n/language-context"
 import { cn } from "@/lib/utils"
+
+const HTML_LANG = { en: "en", pt: "pt-BR", ru: "ru" } as const
 
 export function LanguageToggle() {
   const { lang, setLang } = useLanguage()
@@ -11,11 +13,11 @@ export function LanguageToggle() {
       aria-label={pick(content.a11y.language, lang)}
       className="flex shrink-0 items-center gap-0.5 border border-line p-0.5"
     >
-      {(["pt", "en"] as const).map((l) => (
+      {LANGS.map((l) => (
         <button
           key={l}
           type="button"
-          lang={l === "pt" ? "pt-BR" : "en"}
+          lang={HTML_LANG[l]}
           onClick={() => setLang(l)}
           aria-pressed={lang === l}
           className={cn(
